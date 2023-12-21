@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  find-a-friend-solid-pg: #nome do container
+    image: bitnami/postgresql #imagem do container
+    ports:
+      - 5432:5432 #portas que vai estar rodando
+    environment:
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=apisolid #nome do banco de dados
