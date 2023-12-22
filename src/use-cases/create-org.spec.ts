@@ -21,7 +21,6 @@ describe('Register Use Case', () => {
       description: null,
       phone: '47 99999-9999',
       city: 'Rio do Sul',
-
     })
 
     expect(org.id).toEqual(expect.any(String))
@@ -59,7 +58,7 @@ describe('Register Use Case', () => {
 
     await expect(() =>
       sut.execute({
-        name: 'org_title',
+      name: 'org_title',
       email,
       password: 'org_password',
       description: null,
