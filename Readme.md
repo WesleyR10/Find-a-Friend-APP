@@ -2,15 +2,15 @@
 
 Find-a-Friend app.
 
-# 🚀 Começando
+## 🚀 Começando
 
 Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
 - Clone o repositório: https://github.com/WesleyR10/Find-a-Friend-APP.git 
 
 # 🔧 Instalação
 
-- **1°** Instale as dependências do backend npm install
-- **2°** Altere o nome do arquivo .env.example para .env e configure a porta e a chave secreta. 
+- **1°** Instale as dependências do backend **npm install**
+- **2°** Altere o nome do arquivo **.env.example**  para **.env** e configure a porta e a chave secreta. 
 Exemplo:
 ```
 NODE_ENV=dev
@@ -30,12 +30,12 @@ docker-compose up -d
 ```bash
 docker-compose stop
 ```
-# Iniciando a aplicação
+## 🌎 Iniciando a aplicação
 
 - Inicie o backend **npm run dev**
 
 ## RFs (Requisitos funcionais)
-
+- [x] Deve ser possível cadastrar um usuário;
 - [ ] Deve ser possível cadastrar um pet;
 - [ ] Deve ser possível listar todos os pets disponíveis para adoção em uma cidade;
 - [ ] Deve ser possível filtrar pets por suas características;
@@ -43,7 +43,7 @@ docker-compose stop
 - [ ] Deve ser possível se cadastrar como uma ORG;
 - [ ] Deve ser possível realizar login como uma ORG;
 
-## RNs (Regras de negócio)
+## RNs (Regras de negócio) 
 
 - [ ] Para listar os pets, obrigatoriamente precisamos informar a cidade;
 - [ ] Uma ORG precisa ter um endereço e um número de WhatsApp;
@@ -54,8 +54,8 @@ docker-compose stop
 
 ## RNFs (Requisitos não-funcionais)
 
-- [ ] A senha do usuário precisa estar criptografada;
-- [ ] Os dados da aplicação precisam estar persistidos em um banco PostgreSQL;
+- [x] A senha do usuário precisa estar criptografada;
+- [x] Os dados da aplicação precisam estar persistidos em um banco PostgreSQL;
 - [ ] Todas listas de dados precisam estar paginadas com 20 itens por página;
 - [ ] O usuário deve ser identificado por um JWT (JSON Web Token);
 
@@ -66,7 +66,7 @@ Ao adotar um animal através da FindAFriend, você não só muda a vida de um bi
 Com carinho,
 Equipe FindAFriend
 
-🎁 Expressões de gratidão
+## 🎁 Expressões de gratidão
 Se este projeto foi útil para você de alguma forma, considere as seguintes maneiras de expressar sua gratidão:
 
 - Compartilhe este projeto com outras pessoas 📢
