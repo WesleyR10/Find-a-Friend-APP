@@ -37,8 +37,10 @@ model ORG {
 
 model Pet {
   id         String   @id @default(uuid())
+  animalType String
   name       String
-  breed      String
+  breed      String?
+  size       String?
   age        Int?
   created_at DateTime @default(now())
 

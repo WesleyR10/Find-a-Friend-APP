@@ -7,7 +7,7 @@ import { CreateOrgUseCase } from './create-org'
 let orgsRepository: InMemoryOrgsRepository
 let sut: CreateOrgUseCase
 
-describe('Register Use Case', () => {
+describe('Create ORG Use Case', () => {
   beforeEach(() => {
     orgsRepository = new InMemoryOrgsRepository()
     sut = new CreateOrgUseCase(orgsRepository)
