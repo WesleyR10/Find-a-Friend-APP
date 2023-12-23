@@ -34,6 +34,7 @@ export class InMemoryOrgsRepository implements OrgsRepository {
       description: data.description ?? null,
       phone: data.phone,
       city: data.city,
+      address: data.address,
       created_at: new Date(),
     }
 

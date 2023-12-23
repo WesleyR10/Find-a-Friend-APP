@@ -29,6 +29,7 @@ model ORG {
   description   String?
   phone         String
   city          String
+  address       String
   pets          Pet[]
 
   @@map("orgs")

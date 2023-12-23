@@ -9,7 +9,8 @@ interface RegisterOrgUseCaseRequest { // Vou receber esses dados do controller
   password: string
   description: string | null;
   phone: string;
-  city: string
+  city: string;
+  address: string;
 }
 
 interface RegisterUseCaseResponse { // Vou retornar esses dados para o controller
@@ -19,7 +20,7 @@ interface RegisterUseCaseResponse { // Vou retornar esses dados para o controlle
 export class CreateOrgUseCase {
   constructor(private orgsRepository: OrgsRepository) {}
 
-  async execute({ name, email, password, description, phone,city }: RegisterOrgUseCaseRequest): Promise<RegisterUseCaseResponse>  
+  async execute({ name, email, password, description, phone,city,address }: RegisterOrgUseCaseRequest): Promise<RegisterUseCaseResponse>  
   {
     const password_hash = await hash(password, 6)
 
@@ -35,7 +36,8 @@ export class CreateOrgUseCase {
       password_hash,
       description,
       phone,
-      city
+      city,
+      address
     })
 
     return {org}

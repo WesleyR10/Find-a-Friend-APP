@@ -21,6 +21,7 @@ describe('Register Use Case', () => {
       description: null,
       phone: '47 99999-9999',
       city: 'Rio do Sul',
+      address: 'Rua Teste, 123',
     })
 
     expect(org.id).toEqual(expect.any(String))
@@ -34,6 +35,7 @@ describe('Register Use Case', () => {
       description: null,
       phone: '47 99999-9999',
       city: 'Rio do Sul',
+      address: 'Rua Teste, 123',
     })
 
     const isPasswordCorrectlyHashed = await compare(
@@ -54,6 +56,7 @@ describe('Register Use Case', () => {
       description: null,
       phone: '47 99999-9999',
       city: 'Rio do Sul',
+      address: 'Rua Teste, 123',
     })
 
     await expect(() =>
@@ -64,6 +67,7 @@ describe('Register Use Case', () => {
       description: null,
       phone: '47 99999-9999',
       city: 'Rio do Sul',
+      address: 'Rua Teste, 123',
       }),
     ).rejects.toBeInstanceOf(UserAlreadyExistsError)
   })

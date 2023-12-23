@@ -13,20 +13,9 @@ describe('Pets Use Case', () => {
     petsRepository = new InMemoryPetsRepository()
     orgsRepository = new InMemoryOrgsRepository()
     sut = new RegisterPetUseCase(petsRepository, orgsRepository)
-
-    await orgsRepository.create({
-      id: 'org-01',
-      name: 'org_title',
-      email: 'org@email.com',
-      password_hash: 'org_password',
-      description: null,
-      phone: '47 99999-9999',
-      city: 'Rio do Sul',
-    })
   })
 
   it('should be able to register a pet', async () => {
-    /* Dessa forma aqui funciona
     orgsRepository.items.push({    
       id: 'org-01',
       name: 'org_title',
@@ -35,16 +24,7 @@ describe('Pets Use Case', () => {
       description: null,
       phone: '47 99999-9999',
       city: 'Rio do Sul',
-    }) */
-
-    await orgsRepository.create({
-      id: 'org-01',
-      name: 'org_title',
-      email: 'org@email.com',
-      password_hash: 'org_password',
-      description: null,
-      phone: '47 99999-9999',
-      city: 'Rio do Sul',
+      address: 'Rua Teste, 123',
     })
 
     const { pet } = await sut.execute({
@@ -58,7 +38,7 @@ describe('Pets Use Case', () => {
 
 
   it("shouldn't be possible to register a pet because the org doesn't exist", async () => {
-    await orgsRepository.create({
+    orgsRepository.items.push({    
       id: 'org-01',
       name: 'org_title',
       email: 'org@email.com',
@@ -66,6 +46,7 @@ describe('Pets Use Case', () => {
       description: null,
       phone: '47 99999-9999',
       city: 'Rio do Sul',
+      address: 'Rua Teste, 123',
     })
 
     await expect( () => sut.execute({
