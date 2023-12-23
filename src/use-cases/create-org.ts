@@ -3,7 +3,7 @@ import { hash } from "bcryptjs";
 import { ORG } from "@prisma/client";
 import { UserAlreadyExistsError } from "./errors/user-already-exists-error"
 
-interface RegisterOrgUseCaseRequest { // Vou receber esses dados do controller
+interface RegisterOrgUseCaseRequest { 
   name: string
   email: string
   password: string
@@ -13,7 +13,7 @@ interface RegisterOrgUseCaseRequest { // Vou receber esses dados do controller
   address: string;
 }
 
-interface RegisterUseCaseResponse { // Vou retornar esses dados para o controller
+interface RegisterUseCaseResponse { 
   org: ORG
 }  
 

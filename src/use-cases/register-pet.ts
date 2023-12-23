@@ -3,7 +3,7 @@ import { PetsRepository } from "@/repositories/pets-repository";
 import { Pet } from "@prisma/client";
 import { OrgNotFoundError } from "@/use-cases/errors/org-not-found-error";
 
-interface RegisterPetUseCaseRequest { // Vou receber esses dados do controller
+interface RegisterPetUseCaseRequest { 
   animalType: string;
   name: string;
   breed: string | null;
@@ -11,7 +11,7 @@ interface RegisterPetUseCaseRequest { // Vou receber esses dados do controller
   age: number | null;
   orgId: string;
 }
-interface RegisterPetUseCaseResponse { // Vou retornar esses dados para o controller
+interface RegisterPetUseCaseResponse { 
   pet: Pet
 }  
 
@@ -22,7 +22,6 @@ export class RegisterPetUseCase {
     ) {}
 
   async execute({ animalType,name, breed,size,age, orgId }: RegisterPetUseCaseRequest): Promise<RegisterPetUseCaseResponse> {
-    console.log('Data received:', { animalType, name, breed, size, age, orgId }); // Adicionando log para verificar os dados recebidos
     const org = await this.orgsRepository.findById(orgId)
     
     if (!org) {

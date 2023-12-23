@@ -24,7 +24,7 @@ export class PrismaOrgsRepository implements OrgsRepository {
   }
 
   async searchMany(query: string, page: number) {
-    const gyms = await prisma.oRG.findMany({
+    const orgs = await prisma.oRG.findMany({
       where: {
         city: {
           contains: query,
@@ -34,7 +34,7 @@ export class PrismaOrgsRepository implements OrgsRepository {
       skip: (page - 1) * 20,
     })
 
-    return gyms
+    return orgs 
   }
 
   async getPetsByOrgs(orgs: ORG[]): Promise<Pet[]> {

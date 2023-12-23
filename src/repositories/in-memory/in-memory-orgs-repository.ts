@@ -30,7 +30,6 @@ export class InMemoryOrgsRepository implements OrgsRepository {
     const filteredOrgs = this.items
       .filter((item) => item.city.includes(query))
       .slice((page - 1) * 20, page * 20);
-
     return filteredOrgs;
   }
 

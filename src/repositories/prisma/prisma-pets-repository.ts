@@ -9,4 +9,11 @@ export class PrismaPetsRepository implements PetsRepository {
     return pet
   }
 
+  async filterPetByCharacteristics(data: Prisma.PetWhereInput){
+    const pets = await prisma.pet.findMany({
+      where: data,
+    })
+    return pets
+  }
+  
 }

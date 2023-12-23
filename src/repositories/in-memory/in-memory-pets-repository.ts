@@ -9,7 +9,7 @@ export class InMemoryPetsRepository implements PetsRepository {
   private orgsRepository: InMemoryOrgsRepository;
   constructor(orgsRepository: InMemoryOrgsRepository) {
     this.orgsRepository = orgsRepository;
-  }
+  } 
 
   async create(data: Prisma.PetUncheckedCreateInput) {
     const pet = {
@@ -19,7 +19,7 @@ export class InMemoryPetsRepository implements PetsRepository {
       breed: data.breed ?? null,
       size: data.size ?? null,
       age: data.age ?? null,
-      org_id: data.org_id,
+      org_id: data.org_id ,
       created_at: new Date(),
     }
     this.items.push(pet)
@@ -28,8 +28,24 @@ export class InMemoryPetsRepository implements PetsRepository {
     const org = await this.orgsRepository.findById(data.org_id);
     if (org) {
       this.orgsRepository.pets.push(pet);
-    }
+    } 
 
     return pet;
+  }
+
+  async filterPetByCharacteristics(data: Prisma.PetWhereInput): Promise<Pet[]> {    
+    const filteredPets = this.items.filter((pet) => {
+    const matchAnimalType = !data.animalType || pet.animalType === data.animalType;
+    const matchName = !data.name || pet.name === data.name;
+    const matchBreed = !data.breed || pet.breed === data.breed;
+    const matchSize = !data.size || pet.size === data.size;
+    const matchAge = data.age === undefined || data.age === null || pet.age === data.age;
+
+    const isMatching = matchAnimalType && matchName && matchBreed && matchSize && matchAge;
+
+    return isMatching;
+  });
+
+    return filteredPets 
   }
 }

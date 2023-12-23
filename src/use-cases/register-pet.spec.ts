@@ -16,7 +16,8 @@ describe('Pets Use Case', () => {
   })
 
   it('should be able to register a pet', async () => {
-    await orgsRepository.create({
+    //   await orgsRepository.create({   - Criando através do da instancia do repositório 
+    orgsRepository.items.push({
       id: 'org-01',
       name: 'org_title',
       email: 'org@email.com',
@@ -40,7 +41,7 @@ describe('Pets Use Case', () => {
 
 
   it("shouldn't be possible to register a pet because the org doesn't exist", async () => {
-    await orgsRepository.create({
+    orgsRepository.items.push({
       id: 'org-01',
       name: 'org_title',
       email: 'org@email.com',
@@ -63,7 +64,7 @@ describe('Pets Use Case', () => {
   })
 
   it('should be able to register a pet with null properties', async () => {
-    await orgsRepository.create({
+    orgsRepository.items.push({
       id: 'org-01',
       name: 'org_title',
       email: 'org@email.com',
