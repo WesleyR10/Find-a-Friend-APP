@@ -16,8 +16,7 @@ describe('Filter Pet By Characteristics Use Case', () => {
   })
 
   it('should filter pets by all characteristics', async () => {
-    await orgsRepository.create({
-      id: 'org-01',
+    const org1 = await orgsRepository.create({
       name: 'org_title',
       email: 'org@email.com',
       password_hash: 'org_password',
@@ -27,8 +26,7 @@ describe('Filter Pet By Characteristics Use Case', () => {
       address: 'Rua Teste, 123',
     })
 
-    await orgsRepository.create({
-      id: 'org-02',
+    const org2 =await orgsRepository.create({
       name: 'org_title',
       email: 'org@email.com',
       password_hash: 'org_password',
@@ -39,7 +37,7 @@ describe('Filter Pet By Characteristics Use Case', () => {
     })
 
     await petsRepository.create({
-      org_id: 'org-01',
+      org_id: org1.id,
       animalType: 'Dog',
       name: 'Max',
       breed: 'Labrador',
@@ -48,7 +46,7 @@ describe('Filter Pet By Characteristics Use Case', () => {
     });
 
     await petsRepository.create({
-      org_id: 'org-02',
+      org_id: org2.id,
       animalType: 'Cat',
       name: 'Whiskers',
       breed: 'Siamese',
@@ -73,8 +71,7 @@ describe('Filter Pet By Characteristics Use Case', () => {
 
 
   it('should filter pets by all characteristics', async () => {
-    await orgsRepository.create({
-      id: 'org-01',
+    const org1 = await orgsRepository.create({
       name: 'org_title',
       email: 'org@email.com',
       password_hash: 'org_password',
@@ -84,8 +81,7 @@ describe('Filter Pet By Characteristics Use Case', () => {
       address: 'Rua Teste, 123',
     })
 
-    await orgsRepository.create({
-      id: 'org-02',
+    const org2 =await orgsRepository.create({
       name: 'org_title',
       email: 'org@email.com',
       password_hash: 'org_password',
@@ -96,7 +92,7 @@ describe('Filter Pet By Characteristics Use Case', () => {
     })
 
     await petsRepository.create({
-      org_id: 'org-01',
+      org_id: org1.id,
       animalType: 'Dog',
       name: 'Max',
       breed: 'Labrador',
@@ -105,7 +101,7 @@ describe('Filter Pet By Characteristics Use Case', () => {
     });
 
     await petsRepository.create({
-      org_id: 'org-01',
+      org_id: org2.id,
       animalType: 'Dog',
       name: 'Rex',
       breed: 'pit-bull',
@@ -114,7 +110,7 @@ describe('Filter Pet By Characteristics Use Case', () => {
     });
 
     await petsRepository.create({
-      org_id: 'org-02',
+      org_id: org2.id,
       animalType: 'Cat',
       name: 'Whiskers',
       breed: 'Siamese',
@@ -137,8 +133,7 @@ describe('Filter Pet By Characteristics Use Case', () => {
   })
 
   it('should not filter pets by characteristics  as the filter does not match', async () => {
-    await orgsRepository.create({
-      id: 'org-01',
+    const org1 = await orgsRepository.create({
       name: 'org_title',
       email: 'org@email.com',
       password_hash: 'org_password',
@@ -148,8 +143,7 @@ describe('Filter Pet By Characteristics Use Case', () => {
       address: 'Rua Teste, 123',
     })
 
-    await orgsRepository.create({
-      id: 'org-02',
+    const org2 =await orgsRepository.create({
       name: 'org_title',
       email: 'org@email.com',
       password_hash: 'org_password',
@@ -160,7 +154,7 @@ describe('Filter Pet By Characteristics Use Case', () => {
     })
 
     await petsRepository.create({
-      org_id: 'org-01',
+      org_id: org1.id,
       animalType: 'Dog',
       name: 'Max',
       breed: 'Labrador',
@@ -169,7 +163,7 @@ describe('Filter Pet By Characteristics Use Case', () => {
     });
 
     await petsRepository.create({
-      org_id: 'org-02',
+      org_id: org2.id,
       animalType: 'Cat',
       name: 'Whiskers',
       breed: 'Siamese',

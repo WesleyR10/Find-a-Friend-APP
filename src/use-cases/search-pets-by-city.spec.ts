@@ -15,8 +15,7 @@ describe('Search Pet Use Case', () => {
   })
 
   it('should search for pets in a city', async () => {
-    await orgsRepository.create({
-      id: 'org-01',
+    const org1 = await orgsRepository.create({
       name: 'org_title',
       email: 'org@email.com',
       password_hash: 'org_password',
@@ -26,8 +25,7 @@ describe('Search Pet Use Case', () => {
       address: 'Rua Teste, 123',
     })
 
-    await orgsRepository.create({
-      id: 'org-02',
+    const org2 = await orgsRepository.create({
       name: 'org_title',
       email: 'org@email.com',
       password_hash: 'org_password',
@@ -38,7 +36,7 @@ describe('Search Pet Use Case', () => {
     })
 
     await petsRepository.create({
-      org_id: 'org-01',
+      org_id: org1.id,
       animalType: 'Dog',
       name: 'Max',
       breed: 'Labrador',
@@ -47,7 +45,7 @@ describe('Search Pet Use Case', () => {
     });
 
     await petsRepository.create({
-      org_id: 'org-02',
+      org_id: org2.id,
       animalType: 'Cat',
       name: 'Whiskers',
       breed: 'Siamese',
@@ -66,7 +64,7 @@ describe('Search Pet Use Case', () => {
 
   it('should be able to fetch paginated pets search', async () => {
     for (let i = 1; i <= 22; i++) {
-      await orgsRepository.create({
+      const org = await orgsRepository.create({
         id: `${i}`,
         name: 'org_title',
         email: 'org@email.com',
@@ -78,7 +76,7 @@ describe('Search Pet Use Case', () => {
       })
 
       await petsRepository.create({
-        org_id: `${i}`,
+        org_id: org.id,
         animalType: 'Dog',
         name: `Max ${i}`,
         breed: 'Labrador',
