@@ -1,5 +1,6 @@
 import { InMemoryOrgsRepository } from '@/repositories/in-memory/in-memory-orgs-repository';
 import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-repository';
+import { FilterByPetError } from './errors/filter-by-pet-error';
 import { expect, describe, it, beforeEach } from 'vitest'
 import { SearchPetsByCityUseCase } from './search-pets-by-city';
 
@@ -96,4 +97,52 @@ describe('Search Pet Use Case', () => {
       expect.objectContaining({ name: 'Max 22' }),
     ])
   })
+
+  it('You should not look for pets in a city because there are no pets available', async () => {
+    const org1 = await orgsRepository.create({
+      name: 'org_title',
+      email: 'org@email.com',
+      password_hash: 'org_password',
+      description: null,
+      phone: '47 99999-9999',
+      city: 'Rio do Sul',
+      address: 'Rua Teste, 123',
+    })
+
+    const org2 = await orgsRepository.create({
+      name: 'org_title',
+      email: 'org@email.com',
+      password_hash: 'org_password',
+      description: null,
+      phone: '47 99999-9999',
+      city: 'Belo Horizonte',
+      address: 'Rua Teste, 123',
+    })
+
+    await petsRepository.create({
+      org_id: org1.id,
+      animalType: 'Dog',
+      name: 'Max',
+      breed: 'Labrador',
+      size: 'Large',
+      age: 3,
+    });
+
+    await petsRepository.create({
+      org_id: org2.id,
+      animalType: 'Cat',
+      name: 'Whiskers',
+      breed: 'Siamese',
+      size: 'Small',
+      available: false,
+      age: 2,
+    });
+    
+    await expect(() =>
+      sut.execute({
+        query: 'Belo Horizonte',
+        page: 1,
+      }),
+      ).rejects.toBeInstanceOf(FilterByPetError)    
+    })
 })

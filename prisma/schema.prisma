@@ -42,6 +42,7 @@ model Pet {
   breed      String?
   size       String?
   age        Int?
+  available  Boolean  @default(true)
   created_at DateTime @default(now())
 
   org       ORG        @relation(fields: [org_id], references: [id])

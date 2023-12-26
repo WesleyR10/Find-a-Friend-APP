@@ -42,6 +42,17 @@ describe('Filter Pet By Characteristics Use Case', () => {
       name: 'Max',
       breed: 'Labrador',
       size: 'Large',
+      available: true,
+      age: 3,
+    });
+    
+    await petsRepository.create({
+      org_id: org1.id,
+      animalType: 'Dog',
+      name: 'Max',
+      breed: 'Labrador',
+      size: 'Large',
+      available: false,
       age: 3,
     });
 
@@ -51,6 +62,7 @@ describe('Filter Pet By Characteristics Use Case', () => {
       name: 'Whiskers',
       breed: 'Siamese',
       size: 'Small',
+      available: true,
       age: 2,
     });
 
@@ -60,6 +72,7 @@ describe('Filter Pet By Characteristics Use Case', () => {
         name: 'Max',
         breed: 'Labrador',
         size: 'Large',
+        available: true,
         age: 3,
       }
     })
@@ -69,6 +82,56 @@ describe('Filter Pet By Characteristics Use Case', () => {
     expect(pets).toEqual([expect.objectContaining({ name: 'Max' })])
   })
 
+  it('should not filter pets because they are not available', async () => {
+    const org1 = await orgsRepository.create({
+      name: 'org_title',
+      email: 'org@email.com',
+      password_hash: 'org_password',
+      description: null,
+      phone: '47 99999-9999',
+      city: 'Rio do Sul',
+      address: 'Rua Teste, 123',
+    })
+
+    const org2 =await orgsRepository.create({
+      name: 'org_title',
+      email: 'org@email.com',
+      password_hash: 'org_password',
+      description: null,
+      phone: '47 99999-9999',
+      city: 'Belo Horizonte',
+      address: 'Rua Teste, 123',
+    })
+
+    await petsRepository.create({
+      org_id: org1.id,
+      animalType: 'Dog',
+      name: 'Max',
+      breed: 'Labrador',
+      size: 'Large',
+      available: false,
+      age: 3,
+    });
+
+    await petsRepository.create({
+      org_id: org2.id,
+      animalType: 'Cat',
+      name: 'Whiskers',
+      breed: 'Siamese',
+      size: 'Small',
+      available: false,
+      age: 2,
+    });
+
+    await expect(() =>
+    sut.execute({
+      data: {
+        animalType: 'Dog', 
+        // Possui o tipo dog mas o available é false
+      }
+    }),
+    ).rejects.toBeInstanceOf(FilterByPetError)    
+  })
 
   it('should filter pets by all characteristics', async () => {
     const org1 = await orgsRepository.create({
@@ -97,6 +160,7 @@ describe('Filter Pet By Characteristics Use Case', () => {
       name: 'Max',
       breed: 'Labrador',
       size: 'Large',
+      available: true,
       age: 3,
     });
 
@@ -106,6 +170,7 @@ describe('Filter Pet By Characteristics Use Case', () => {
       name: 'Rex',
       breed: 'pit-bull',
       size: 'Large',
+      available: true,
       age: 3,
     });
 
@@ -115,6 +180,7 @@ describe('Filter Pet By Characteristics Use Case', () => {
       name: 'Whiskers',
       breed: 'Siamese',
       size: 'Small',
+      available: true,
       age: 2,
     });
 
@@ -159,6 +225,7 @@ describe('Filter Pet By Characteristics Use Case', () => {
       name: 'Max',
       breed: 'Labrador',
       size: 'Large',
+      available: true,
       age: 3,
     });
 
@@ -168,6 +235,7 @@ describe('Filter Pet By Characteristics Use Case', () => {
       name: 'Whiskers',
       breed: 'Siamese',
       size: 'Small',
+      available: true,
       age: 2,
     });
 

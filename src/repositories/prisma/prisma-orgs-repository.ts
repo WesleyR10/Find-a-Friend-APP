@@ -44,6 +44,7 @@ export class PrismaOrgsRepository implements OrgsRepository {
         org_id: {
           in: orgIds,
         },
+        available: true,
       },
     });
     return pets;

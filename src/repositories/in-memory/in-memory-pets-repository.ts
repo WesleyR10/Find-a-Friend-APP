@@ -19,6 +19,7 @@ export class InMemoryPetsRepository implements PetsRepository {
       breed: data.breed ?? null,
       size: data.size ?? null,
       age: data.age ?? null,
+      available: data.available ?? true,
       org_id: data.org_id ,
       created_at: new Date(),
     }
@@ -33,19 +34,22 @@ export class InMemoryPetsRepository implements PetsRepository {
     return pet;
   }
 
-  async filterPetByCharacteristics(data: Prisma.PetWhereInput): Promise<Pet[]> {    
+  async filterPetByCharacteristics(data: Prisma.PetWhereInput): Promise<Pet[]> {
     const filteredPets = this.items.filter((pet) => {
-    const matchAnimalType = !data.animalType || pet.animalType === data.animalType;
-    const matchName = !data.name || pet.name === data.name;
-    const matchBreed = !data.breed || pet.breed === data.breed;
-    const matchSize = !data.size || pet.size === data.size;
-    const matchAge = data.age === undefined || data.age === null || pet.age === data.age;
-
-    const isMatching = matchAnimalType && matchName && matchBreed && matchSize && matchAge;
-
-    return isMatching;
-  });
-
-    return filteredPets 
+      const matchAvailable = data.available === null || data.available === undefined || pet.available === data.available;
+  
+      if (pet.available && matchAvailable) {
+        const matchAnimalType = !data.animalType || pet.animalType === data.animalType;
+        const matchName = !data.name || pet.name === data.name;
+        const matchBreed = !data.breed || pet.breed === data.breed;
+        const matchSize = !data.size || pet.size === data.size;
+        const matchAge = data.age === undefined || data.age === null || pet.age === data.age;
+  
+        return matchAnimalType && matchName && matchBreed && matchSize && matchAge;
+      }
+      return false;
+    });
+  
+    return filteredPets;
   }
 }

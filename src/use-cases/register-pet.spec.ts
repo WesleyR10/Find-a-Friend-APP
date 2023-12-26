@@ -39,7 +39,6 @@ describe('Pets Use Case', () => {
     expect(pet.id).toEqual(expect.any(String))
   })
 
-
   it("shouldn't be possible to register a pet because the org doesn't exist", async () => {
     orgsRepository.items.push({
       id: 'org-01',
@@ -87,6 +86,7 @@ describe('Pets Use Case', () => {
     expect(pet.id).toEqual(expect.any(String))
     expect(pet.breed).toBeNull() 
     expect(pet.size).toBeNull()  
-    expect(pet.age).toBeNull()   
+    expect(pet.age).toBeNull()  
+    expect(pet.available).toBe(true) 
   })
 })

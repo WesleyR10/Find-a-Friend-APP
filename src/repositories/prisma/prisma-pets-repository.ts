@@ -11,7 +11,7 @@ export class PrismaPetsRepository implements PetsRepository {
 
   async filterPetByCharacteristics(data: Prisma.PetWhereInput){
     const pets = await prisma.pet.findMany({
-      where: data,
+      where: data, 
     })
     return pets
   }

@@ -37,7 +37,7 @@ docker-compose stop
 ## RFs (Requisitos funcionais)
 - [x] Deve ser possível cadastrar um usuário;
 - [x] Deve ser possível cadastrar um pet;
-- [ ] Deve ser possível listar todos os pets disponíveis para adoção em uma cidade;
+- [x] Deve ser possível listar todos os pets disponíveis para adoção em uma cidade;
 - [x] Deve ser possível filtrar pets por suas características;
 - [ ] Deve ser possível visualizar detalhes de um pet para adoção;
 - [x] Deve ser possível se cadastrar como uma ORG;
