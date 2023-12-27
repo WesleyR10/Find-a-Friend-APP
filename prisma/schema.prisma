@@ -20,6 +20,7 @@ model User {
   name          String
   email         String     @unique
   password_hash String
+  role          ROLE       @default(MEMBER)
   created_at    DateTime   @default(now())
   adoptions     Adoption[]
 
