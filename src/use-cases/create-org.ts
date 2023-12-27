@@ -20,8 +20,7 @@ interface RegisterUseCaseResponse {
 export class CreateOrgUseCase {
   constructor(private orgsRepository: OrgsRepository) {}
 
-  async execute({ name, email, password, description, phone,city,address }: RegisterOrgUseCaseRequest): Promise<RegisterUseCaseResponse>  
-  {
+  async execute({ name, email, password, description, phone,city,address }: RegisterOrgUseCaseRequest): Promise<RegisterUseCaseResponse>  {
     const password_hash = await hash(password, 6)
 
     const orgWithSameEmail = await this.orgsRepository.findByEmail(email)

@@ -52,6 +52,7 @@ export class InMemoryOrgsRepository implements OrgsRepository {
       phone: data.phone,
       city: data.city,
       address: data.address,
+      role: data.role || 'MEMBER',
       created_at: new Date(),
     }
 
