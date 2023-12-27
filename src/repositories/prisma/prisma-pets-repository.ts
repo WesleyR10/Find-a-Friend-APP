@@ -26,4 +26,11 @@ export class PrismaPetsRepository implements PetsRepository {
     return pets
   }
   
+  async updateAvailability(petId: string, available: boolean): Promise<void> {
+    await prisma.pet.update({
+      where: { id: petId },
+      data: { available },
+    });
+  }
+
 }

@@ -34,6 +34,15 @@ export class InMemoryPetsRepository implements PetsRepository {
     return pet;
   }
 
+  updateAvailability(petId: string, available: boolean): Promise<void> {
+    const pet = this.items.find((item) => item.id === petId)
+    
+    if (pet) {
+      pet.available = available;
+    }
+    return Promise.resolve();
+  }
+
   async findById(id: string) {
     const pet = this.items.find((item) => item.id === id)
 
