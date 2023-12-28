@@ -67,14 +67,12 @@ describe('Filter Pet By Characteristics Use Case', () => {
     });
 
     const { pets } = await sut.execute({
-      data: {
         animalType: 'Dog',
         name: 'Max',
         breed: 'Labrador',
         size: 'Large',
         available: true,
         age: 3,
-      }
     })
 
 
@@ -125,10 +123,8 @@ describe('Filter Pet By Characteristics Use Case', () => {
 
     await expect(() =>
     sut.execute({
-      data: {
         animalType: 'Dog', 
         // Possui o tipo dog mas o available é false
-      }
     }),
     ).rejects.toBeInstanceOf(FilterByPetError)    
   })
@@ -185,10 +181,8 @@ describe('Filter Pet By Characteristics Use Case', () => {
     });
 
     const { pets } = await sut.execute({
-      data: {
         animalType: 'Dog',
         // Adicione outras características para filtrar
-      }
     })
 
     expect(pets).toHaveLength(2)
@@ -241,9 +235,7 @@ describe('Filter Pet By Characteristics Use Case', () => {
 
     await expect(() =>
     sut.execute({
-      data: {
         animalType: 'monkey', // Característica que não existe
-      }
     }),
     ).rejects.toBeInstanceOf(FilterByPetError)    
   })

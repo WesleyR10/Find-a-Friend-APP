@@ -7,7 +7,7 @@ import request from 'supertest'
     app: FastifyInstance,
     isAdmin = false,
   ) {
-    await prisma.user.create({
+    const user = await prisma.user.create({
       data: {
         name: 'John Doe',
         email: 'johndoe@example.com',
@@ -22,6 +22,7 @@ import request from 'supertest'
   })
 
   const { token } = authResponse.body
+  const userId = user.id
 
-  return {token}
+  return {token, userId}
 }

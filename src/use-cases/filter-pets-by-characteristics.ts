@@ -1,9 +1,14 @@
 import { PetsRepository } from '@/repositories/pets-repository';
-import { Pet, Prisma } from '@prisma/client'
+import { Pet } from '@prisma/client'
 import { FilterByPetError } from './errors/filter-by-pet-error';
 
 interface FilterPetsUseCaseRequest {
-  data: Prisma.PetWhereInput
+  animalType?: string;
+  breed?: string;
+  size?: string;
+  age?: number;
+  name?: string;
+  available?: boolean;
 }
 
 interface FilterPetsUseCaseResponse {
@@ -14,11 +19,24 @@ export class FilterPetByCharacteristicsUseCase {
   constructor(private petsRepository: PetsRepository) {}
 
   async execute({
-    data
+    animalType,
+    breed,
+    size,
+    age,
+    name,
+    available,
   }: FilterPetsUseCaseRequest): Promise<FilterPetsUseCaseResponse> {
-    const pets = await this.petsRepository.filterPetByCharacteristics(data)
+    const pets = await this.petsRepository.filterPetByCharacteristics(  
+      animalType ,
+      breed,
+      size,
+      age,
+      name,
+      available,)
     
-    if (pets.length <= 0 ) {
+      const petAvailable = pets.some(pet => pet.available === true);
+
+    if (pets.length <= 0 || !petAvailable ) {
       throw new FilterByPetError()
     }
     

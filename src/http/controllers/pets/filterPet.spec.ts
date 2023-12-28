@@ -40,11 +40,9 @@ describe('Filter Pets (e2e)', () => {
     const response = await request(app.server)
       .get('/pets/filter')
       .query({
-        data: {
           animalType: 'dog',
           breed: 'pit-bull',
           age: 1,
-        }
       })
       .set('Authorization', `Bearer ${token}`)
       .send()
@@ -52,7 +50,6 @@ describe('Filter Pets (e2e)', () => {
     expect(response.statusCode).toEqual(200)
     expect(response.body.pets).toHaveLength(2)
 
-    console.log(response.body.pets)
     expect(response.body.pets).toEqual([
       expect.objectContaining( {breed: 'pit-bull',}),
         expect.objectContaining( {breed: 'pit-bull',}),

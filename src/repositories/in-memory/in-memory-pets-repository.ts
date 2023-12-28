@@ -53,16 +53,16 @@ export class InMemoryPetsRepository implements PetsRepository {
     return pet
   }
 
-  async filterPetByCharacteristics(data: Prisma.PetWhereInput): Promise<Pet[]> {
+  async filterPetByCharacteristics(animalType: string | undefined, breed: string | undefined, size: string | undefined, age: number | undefined, name: string | undefined, available:boolean | undefined): Promise<Pet[]> {
     const filteredPets = this.items.filter((pet) => {
-      const matchAvailable = data.available === null || data.available === undefined || pet.available === data.available;
+      const matchAvailable = available === null || available === undefined || pet.available === available;
   
       if (pet.available && matchAvailable) {
-        const matchAnimalType = !data.animalType || pet.animalType === data.animalType;
-        const matchName = !data.name || pet.name === data.name;
-        const matchBreed = !data.breed || pet.breed === data.breed;
-        const matchSize = !data.size || pet.size === data.size;
-        const matchAge = data.age === undefined || data.age === null || pet.age === data.age;
+        const matchAnimalType = !animalType || pet.animalType === animalType;
+        const matchName = !name || pet.name === name;
+        const matchBreed = !breed || pet.breed === breed;
+        const matchSize = !size || pet.size === size;
+        const matchAge = age === undefined || age === null || pet.age === age;
   
         return matchAnimalType && matchName && matchBreed && matchSize && matchAge;
       }

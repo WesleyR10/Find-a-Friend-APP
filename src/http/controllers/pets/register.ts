@@ -21,7 +21,7 @@ export async function registerPets(request: FastifyRequest, reply: FastifyReply)
 
     const registerPetUseCase = makeRegisterPetUseCase() 
 
-    await registerPetUseCase.execute({
+    const registeredPet = await registerPetUseCase.execute({
       animalType,
       name,
       breed,
@@ -29,6 +29,8 @@ export async function registerPets(request: FastifyRequest, reply: FastifyReply)
       age,
       orgId,
     })
+    return reply.status(201).send({registeredPet})
+
   } catch (err) {
     if(err instanceof OrgNotFoundError){
       return reply.status(409).send({ message: err.message})
@@ -36,6 +38,4 @@ export async function registerPets(request: FastifyRequest, reply: FastifyReply)
 
     throw err
   }
-
-  return reply.status(201).send()
 }

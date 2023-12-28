@@ -38,7 +38,7 @@ export class AdoptionUseCase {
     })
 
     await this.petsRepository.updateAvailability(petId, false);
-
+    
     const getOrgPhone = await this.orgsRepository.findById(pet.org_id) 
 
     if (!getOrgPhone) {
