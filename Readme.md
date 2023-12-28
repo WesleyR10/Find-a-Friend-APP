@@ -50,14 +50,14 @@ docker-compose stop
 - [x] Um pet deve estar ligado a uma ORG;
 - [x] O usuário que quer adotar, entrará em contato com a ORG via WhatsApp;
 - [x] Todos os filtros, além da cidade, são opcionais;
-- [ ] Para uma ORG acessar a aplicação como admin, ela precisa estar logada;
+- [x] Para uma ORG acessar a aplicação como admin, ela precisa estar logada;
 
 ## RNFs (Requisitos não-funcionais)
 
 - [x] A senha do usuário precisa estar criptografada;
 - [x] Os dados da aplicação precisam estar persistidos em um banco PostgreSQL;
 - [x] Todas listas de dados precisam estar paginadas com 20 itens por página;
-- [ ] O usuário deve ser identificado por um JWT (JSON Web Token);
+- [x] O usuário deve ser identificado por um JWT (JSON Web Token);
 
 # 🐾 Faça parte da comunidade!
 

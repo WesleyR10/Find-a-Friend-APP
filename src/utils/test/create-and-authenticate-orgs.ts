@@ -7,7 +7,7 @@ import request from 'supertest'
     app: FastifyInstance,
     isAdmin = false,
   ) {
-    await prisma.oRG.create({
+    const org = await prisma.oRG.create({
       data: {
         name: 'org_title',
         email: 'org@email.com',
@@ -26,6 +26,7 @@ import request from 'supertest'
   })
 
   const { token } = authResponse.body
+  const orgId = org.id
 
-  return {token}
+  return {token, orgId}
 }

@@ -1,0 +1,20 @@
+name: Run Unit Tests
+
+on: [push] # Toda vez que o usuário fazer um push no repositório.
+
+jobs:
+  run-unit-tests:
+    name: Run Unit Tests # Nome do job
+    runs-on: ubuntu-latest # Sistema operacional que o job vai rodar
+
+    steps: # Passos que o job vai executar
+      - uses: actions/checkout@v3 # Ação que vai ser executada - baixa o código
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18 # Versão do node que vai ser instalada
+          cache: 'npm' 
+
+      - run: npm ci
+
+      - run: npm run test
